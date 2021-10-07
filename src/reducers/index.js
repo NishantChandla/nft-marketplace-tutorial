@@ -33,15 +33,16 @@ const connectWalletReducer = (config = initialWalletState, action) => {
     }
 }
 
-const contractStorageReducer = (state=0, action) => {
+const tokenDataReducer=(state=[], action)=>{
     switch(action.type){
-        case "SET_VALUE":
+        case "SET_TOKEN_DATA":
             return action.payload;
         default:
             return state;
     }
 }
 
-const reducers = combineReducers({walletConfig: connectWalletReducer, contractStorage: contractStorageReducer});
+
+const reducers = combineReducers({walletConfig: connectWalletReducer, tokenData: tokenDataReducer});
 const persistedReducer = persistReducer(persistConfig, reducers);
 export default persistedReducer;
