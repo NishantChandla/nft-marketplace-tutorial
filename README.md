@@ -1,5 +1,9 @@
 # NFT marketplace tutorial
 
+Check out the tutorial on [Figment Learn](https://learn.figment.io/tutorials/create-an-nft-marketplace-on-tezos)
+
+Smart contract - [SmartPy](https://smartpy.io/ide?cid=QmVGqtBwNNnxwdFPrnmZYnQGq5PEQGSGMQwrB53rMtuJfg&k=6c6a8bdfdaf5a2893854)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
