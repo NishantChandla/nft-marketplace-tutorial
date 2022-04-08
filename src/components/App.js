@@ -19,7 +19,7 @@ import Show from './layouts/Show';
 const App = () => {
     const dispatch = useDispatch();
     const [Tezos, setTezos] = useState(
-        new TezosToolkit("https://granadanet.smartpy.io/")
+        new TezosToolkit("https://hangzhounet.smartpy.io/")
     );
     const [wallet, setWallet] = useState(null);
 
@@ -27,7 +27,7 @@ const App = () => {
         (async () => {
             const wallet_instance = new BeaconWallet({
                 name: "NFT marketplace",
-                preferredNetwork: NetworkType.GRANADANET,
+                preferredNetwork: NetworkType.HANGZHOUNET,
                 colorMode: ColorMode.LIGHT,
                 disableDefaultEvents: false, // Disable all events / UI. This also disables the pairing alert.
                 eventHandlers: {
