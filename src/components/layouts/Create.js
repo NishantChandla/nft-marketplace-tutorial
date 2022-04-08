@@ -12,7 +12,7 @@ const client = new NFTStorage({ token: apiKey });
 const Create = ({ Tezos }) => {
     const dispatch = useDispatch();
 	const [openFileSelector, { filesContent }] = useFilePicker({
-		accept: [".png", ".jpg", ".jpeg"],
+		accept: [".png", ".jpg", ".jpeg", ".gif"],
 		multiple: false,
 		readAs: "ArrayBuffer",
 	});
