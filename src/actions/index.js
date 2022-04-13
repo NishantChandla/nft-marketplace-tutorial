@@ -14,8 +14,8 @@ export const connectWallet = ({ wallet, Tezos }) => {
 			if (!activeAccount) {
 				await wallet.requestPermissions({
 					network: {
-						type: NetworkType.HANGZHOUNET,
-						rpcUrl: "https://hangzhounet.smartpy.io/",
+						type: NetworkType.MAINNET,
+						rpcUrl: "https://mainnet.smartpy.io/",
 					},
 				});
 			}
@@ -45,7 +45,7 @@ export const _walletConfig = (user) => {
 
 export const disconnectWallet = ({ wallet, setTezos }) => {
 	return async (dispatch) => {
-		setTezos(new TezosToolkit("https://hangzhounet.smartpy.io/"));
+		setTezos(new TezosToolkit("https://mainnet.smartpy.io/"));
 
 		dispatch({
 			type: "DISCONNECT_WALLET",
@@ -73,10 +73,10 @@ export const fetchData = () => {
 	return async (dispatch) => {
 		try {
 			const response = await axios.get(
-				`https://api.hangzhou2net.tzkt.io/v1/contracts/${config.contractAddress}/bigmaps/data/keys`
+				`https://api.mainnet.tzkt.io/v1/contracts/${config.contractAddress}/bigmaps/data/keys`
 			);
 			const response1 = await axios.get(
-				`https://api.hangzhou2net.tzkt.io/v1/contracts/${config.tokenAddress}/bigmaps/token_metadata/keys`
+				`https://api.mainnet.tzkt.io/v1/contracts/${config.tokenAddress}/bigmaps/token_metadata/keys`
 			);
 			const d1 = response.data;
 			const d2 = response1.data;
