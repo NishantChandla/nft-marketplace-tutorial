@@ -1,6 +1,6 @@
 const config = {
-        contractAddress : "KT1VALVFcYoP6BkTFKGp3e6jun6fsXpoaqXX", 
-        tokenAddress: "KT1SSNyLSHuxhjg567YArvPE9sH1AWbFMfzD"
+        contractAddress : "KT1Dr9oErESQqi6afEwFYYYuyqEeZEfDbvEZ", 
+        tokenAddress: "KT1HvQGgAxitLmTrPa3EmgKLZZctBjpWD9vA"
 }
 
 export default config;
