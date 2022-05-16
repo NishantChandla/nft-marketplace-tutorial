@@ -26,7 +26,7 @@ const App = () => {
     useEffect(()=>{
         (async () => {
             const wallet_instance = new BeaconWallet({
-                name: "NFT marketplace",
+                name: "Momento marketplace",
                 preferredNetwork: NetworkType.MAINNET,
                 colorMode: ColorMode.LIGHT,
                 disableDefaultEvents: false, // Disable all events / UI. This also disables the pairing alert.
