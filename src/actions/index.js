@@ -45,6 +45,7 @@ export const _walletConfig = (user) => {
 
 export const disconnectWallet = ({ wallet, setTezos }) => {
 	return async (dispatch) => {
+
 		setTezos(new TezosToolkit("https://mainnet.smartpy.io/"));
 
 		dispatch({

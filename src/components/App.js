@@ -28,6 +28,7 @@ const App = () => {
             const wallet_instance = new BeaconWallet({
                 name: "Momento marketplace",
                 preferredNetwork: NetworkType.MAINNET,
+
                 colorMode: ColorMode.LIGHT,
                 disableDefaultEvents: false, // Disable all events / UI. This also disables the pairing alert.
                 eventHandlers: {
