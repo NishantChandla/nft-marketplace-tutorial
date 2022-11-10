@@ -1,6 +1,6 @@
 import React,{ useState, useEffect } from 'react';
-import Header from './sections/Header';
-import { useDispatch } from 'react-redux';
+import Header from './Header';
+import { useSelector, useDispatch } from 'react-redux';
 import { TezosToolkit} from "@taquito/taquito";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import {
@@ -10,24 +10,25 @@ import {
   ColorMode
 } from "@airgap/beacon-sdk";
 
-import { fetchData, _walletConfig } from '../actions';
-import { Route, Switch } from 'react-router';
-import Home from './layouts/Home';
-import Create from './layouts/Create';
-import Show from './layouts/Show';
+import { fetchData, fetchContractData, _walletConfig } from "../actions";
+import { Route, Routes } from "react-router";
+import Home from "./layouts/Home";
+import Create from "./layouts/Create";
+import Show from "./layouts/Show";
 
 const App = () => {
+    const selector = useSelector(state => state);
     const dispatch = useDispatch();
     const [Tezos, setTezos] = useState(
-        new TezosToolkit("https://hangzhounet.smartpy.io/")
+      new TezosToolkit("https://ghostnet.smartpy.io/")
     );
     const [wallet, setWallet] = useState(null);
 
     useEffect(()=>{
         (async () => {
             const wallet_instance = new BeaconWallet({
-                name: "NFT marketplace",
-                preferredNetwork: NetworkType.HANGZHOUNET,
+                name: "Template",
+                preferredNetwork: NetworkType.GHOSTNET,
                 colorMode: ColorMode.LIGHT,
                 disableDefaultEvents: false, // Disable all events / UI. This also disables the pairing alert.
                 eventHandlers: {
@@ -47,7 +48,7 @@ const App = () => {
                 const balance = await Tezos.tz.getBalance(userAddress);
                 dispatch(_walletConfig(
                     {
-                        userAddress: userAddress, 
+                        userAddress: userAddress,
                         balance: balance.toNumber()
                     }));
             }
@@ -57,26 +58,20 @@ const App = () => {
 
 
     useEffect(()=>{
-        dispatch(fetchData());
+        dispatch(fetchData({Tezos}));
     },[Tezos, dispatch]);
 
     return (
+      <div className="ui container">
+        <Header Tezos={Tezos} setTezos={setTezos} wallet={wallet} />
         <div className="ui container">
-            <Header Tezos={Tezos} setTezos={setTezos} wallet={wallet} />
-            <div className="ui container">
-                <Switch>
-                    <Route path="/create">
-                        <Create Tezos={Tezos}/>
-                    </Route>
-                    <Route path="/show/:id">
-                        <Show Tezos={Tezos}/>
-                    </Route>
-                    <Route path="/">
-                        <Home Tezos={Tezos}/>
-                    </Route>
-                </Switch>
-            </div>
+          <Routes>
+            <Route path="/create" element={<Create Tezos={Tezos} />} />
+            <Route path="/show/:id" element={<Show Tezos={Tezos} />} />
+            <Route path="/" element={<Home Tezos={Tezos} />} />
+          </Routes>
         </div>
+      </div>
     );
 }
 

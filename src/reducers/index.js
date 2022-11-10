@@ -18,7 +18,7 @@ const initialWalletState = {
 const connectWalletReducer = (config = initialWalletState, action) => {
     switch(action.type){
         case "CONNECT_WALLET":
-            return {...config,user: action.user, 
+            return {...config,user: action.user,
                         };
         case "DISCONNECT_WALLET":
             storage.removeItem('persist:root')
@@ -33,16 +33,29 @@ const connectWalletReducer = (config = initialWalletState, action) => {
     }
 }
 
-const tokenDataReducer=(state=[], action)=>{
+const contractStorageReducer = (state=0, action) => {
     switch(action.type){
-        case "SET_TOKEN_DATA":
+        case "SET_VALUE":
             return action.payload;
         default:
             return state;
     }
 }
 
+const tokenDataReducer = (state = [], action) => {
+  switch (action.type) {
+    case "SET_TOKEN_DATA":
+      return action.payload;
+    default:
+      return state;
+  }
+};
 
-const reducers = combineReducers({walletConfig: connectWalletReducer, tokenData: tokenDataReducer});
+
+const reducers = combineReducers({
+  walletConfig: connectWalletReducer,
+  contractStorage: contractStorageReducer,
+  tokenData: tokenDataReducer,
+});
 const persistedReducer = persistReducer(persistConfig, reducers);
 export default persistedReducer;
